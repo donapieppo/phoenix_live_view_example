@@ -8,17 +8,16 @@ defmodule Demo.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      # Start the Ecto repository
-      Demo.Repo,
-      # Start the Telemetry supervisor
       DemoWeb.Telemetry,
-      # Start the PubSub system
+      Demo.Repo,
+      {DNSCluster, query: Application.get_env(:demo, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Demo.PubSub},
-      DemoWeb.Presence,
-      # Start the Endpoint (http/https)
-      DemoWeb.Endpoint
+      # Start the Finch HTTP client for sending emails
+      {Finch, name: Demo.Finch},
       # Start a worker by calling: Demo.Worker.start_link(arg)
-      # {Demo.Worker, arg}
+      # {Demo.Worker, arg},
+      # Start to serve requests, typically the last entry
+      DemoWeb.Endpoint
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
