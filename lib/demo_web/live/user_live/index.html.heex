@@ -11,8 +11,8 @@
     </tr>
   </thead>
   <tbody>
-    <%= for user <- @users do %>
-      <tr>
+    <%= for {dom_id, user} <- @streams.users do %>
+      <tr id={dom_id}>
         <td><%= user.username %></td>
         <td><%= user.email %></td>
         <td><%= user.phone_number %></td>

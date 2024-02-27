@@ -30,7 +30,7 @@ defmodule DemoWeb.UserLive.Row do
     <tr class="user-row" id={@id} phx-click="click" phx-target={@myself}>
       <td><%= @user.username %> <%= @count %></td>
       <td>
-        <%= live_component @socket, Email, id: "email-#{@id}", email: @user.email %>
+        <.live_component module={Email} id={"email-#{@id}"} email={@user.email} />
       </td>
     </tr>
     """
@@ -54,7 +54,7 @@ defmodule DemoWeb.UserLive.IndexAutoScroll do
              phx-hook="InfiniteScroll"
              data-page={@page}>
         <%= for user <- @users do %>
-          <%= live_component @socket, Row, id: "user-#{user.id}", user: user %>
+          <.live_component module={Row} id={"user-#{user.id}"} user={user} />
         <% end %>
       </tbody>
     </table>
