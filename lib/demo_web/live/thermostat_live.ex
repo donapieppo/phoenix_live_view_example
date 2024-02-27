@@ -6,7 +6,7 @@ defmodule DemoWeb.ThermostatLive do
     <div class="thermostat">
       <div class={"bar #{@mode}"}>
         <a href="#" phx-click="toggle-mode"><%= @mode %></a>
-        <span><%= NimbleStrftime.format(@time, "%H:%M:%S") %></span>
+        <span><%= Calendar.strftime(@time, "%H:%M:%S") %></span>
       </div>
       <div class="controls">
         <span class="reading"><%= @val %></span>
