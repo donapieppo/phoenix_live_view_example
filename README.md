@@ -27,5 +27,6 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
   * streams (`phx-update="append"` is deprecated, please use streams instead)
   * `lib/demo_web/templates/layout` is now `lib/demo_web/components/layouts`
   * `simple_form` component for editing user
+  * use of Tailwind css with `@apply` directive
   *
   * a lot of changes from runnig `mix phx.new demo` :-)
