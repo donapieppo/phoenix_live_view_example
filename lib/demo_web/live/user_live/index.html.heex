@@ -18,11 +18,9 @@
 				<td><%= user.phone_number %></td>
 
 				<td>
-					<%= live_redirect "Show", to: Routes.user_show_path(@socket, :show, user) %>
-					<%= live_redirect "Edit", to: Routes.user_edit_path(@socket, :edit, user) %>
-					<%= link "Delete", to: "#",
-							phx_click: "delete_user",
-							phx_value_id: user.id %>
+					<.link href={~p"/users/#{user.id}"}>Show</.link>
+          <.link href={~p"/users/#{user.id}/edit"}>Edit</.link>
+					<.link phx-click="delete_user" phx-value-id={user.id}>Delete</.link>
 				</td>
 			</tr>
 		<% end %>
@@ -30,11 +28,11 @@
 </table>
 
 <%= if @page > 1 do %>
-  <span><%= live_patch "prev", to: Routes.user_index_path(@socket, :index, page: @page - 1) %></span>
+  <span><.link patch={~p"/users?page=#{@page - 1}"}>prev</.link></span>
 <% end %>
 <%= for i <- (@page - 5)..(@page + 5), i > 0 do %>
-  <span><%= live_patch "#{i}", to: Routes.user_index_path(@socket, :index, page: i) %></span>
+  <span><.link patch={~p"/users?page=#{i}"}><%= i %></.link></span>
 <% end %>
-<span><%= live_patch "next", to: Routes.user_index_path(@socket, :index, page: @page + 1) %></span>
+  <span><.link patch={~p"/users?page=#{@page + 1}"}>next</.link></span>
 <br/>
-<span><%= live_redirect "New User (live)", to: Routes.user_new_path(@socket, :new) %></span>
+<span><.link href={~p"/users/new"}>New User</.link></span>
