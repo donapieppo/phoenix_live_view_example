@@ -12,8 +12,8 @@ defmodule DemoWeb.UserLive.Show do
       <li><b>Email:</b> <%= @user.email %></li>
       <li><b>Phone:</b> <%= @user.phone_number %></li>
     </ul>
-    <span><%= live_redirect "Edit", to: Routes.user_edit_path(@socket, :edit, @user) %></span>
-    <span><%= live_redirect "Back", to: Routes.user_index_path(@socket, :index) %></span>
+    <span><.link href={~p"/users/#{@user.id}/edit"}>Edit</.link></span>
+    <span><.back navigate={~p"/users"}>Back</.back></span>
     """
   end
 
