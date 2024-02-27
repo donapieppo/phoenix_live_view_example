@@ -20,8 +20,7 @@ defmodule DemoWeb.ImageLive do
         </fieldset>
       </form>
       <br/>
-      <img phx-click="boom"
-        src={Routes.static_path(DemoWeb.Endpoint, "/images/phoenix.png")}
+      <img src={~p"/images/logo.svg"} phx-click="boom"
         width={@width} style={"background: #{@bg};"}/>
     </div>
     """
