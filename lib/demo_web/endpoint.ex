@@ -7,10 +7,13 @@ defmodule DemoWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_demo_key",
-    signing_salt: "4nyFqBJ5"
+    signing_salt: "IAV28bBK",
+    same_site: "Lax"
   ]
 
-  socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
+  socket "/live", Phoenix.LiveView.Socket,
+    websocket: [connect_info: [session: @session_options]],
+    longpoll: [connect_info: [session: @session_options]]
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -20,7 +23,7 @@ defmodule DemoWeb.Endpoint do
     at: "/",
     from: :demo,
     gzip: false,
-    only: ~w(assets fonts images favicon.ico robots.txt)
+    only: DemoWeb.static_paths()
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
