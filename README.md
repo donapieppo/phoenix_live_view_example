@@ -24,3 +24,4 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
   * `Routes.static_path` -> `~p"..."`
   * `live_redirect` -> `<.link href={~p"..."}>...</.link>`
   * `link "text", to: "..."` -> `<.link href={~p"...}"}>`
+  * streams (phx-update="append" is deprecated, please use streams instead)
