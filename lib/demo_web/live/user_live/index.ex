@@ -38,7 +38,7 @@ defmodule DemoWeb.UserLive.Index do
     user = Accounts.get_user!(id)
     {:ok, _user} = Accounts.delete_user(user)
 
-    {:noreply, socket}
+    {:noreply, socket |> put_flash(:info, "User deleted")}
   end
 
   defp go_page(socket, page) when page > 0 do
