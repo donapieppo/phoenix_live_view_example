@@ -12,7 +12,7 @@ defmodule DemoWeb.UserLive.Edit do
     {:noreply,
      assign(socket, %{
        user: user,
-       changeset: Accounts.change_user(user)
+       form: to_form(Accounts.change_user(user))
      })}
   end
 
@@ -31,7 +31,7 @@ defmodule DemoWeb.UserLive.Edit do
         {:noreply,
          socket
          |> put_flash(:info, "User updated successfully.")
-         |> push_redirect(to: Routes.user_show_path(socket, :show, user))}
+         |> push_redirect(to: ~p"/users/#{user.id}")}
 
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply, assign(socket, changeset: changeset)}
