@@ -1,0 +1,5 @@
+#example-list {
+  & li {
+    @apply flex shadow-lg border-2 px-4 py-2 w-full text-center items-center justify-center hover:bg-gray-50;
+  }
+}
