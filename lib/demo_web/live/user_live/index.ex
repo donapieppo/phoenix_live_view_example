@@ -16,7 +16,7 @@ defmodule DemoWeb.UserLive.Index do
   defp fetch(socket) do
     %{page: page, per_page: per_page} = socket.assigns
     socket 
-    |> stream(:users, Accounts.list_users(page, per_page))
+    |> stream(:users, Accounts.list_users(page, per_page), reset: true)
     |> assign(page_title: "Listing Users – Page #{page}")
   end
 
