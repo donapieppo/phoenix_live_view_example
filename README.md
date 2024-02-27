@@ -19,7 +19,7 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 
 ## Main changes for phoenix 1.7.11
 
-  * nimble_strftime is now Calendar in elixir
-  * Routes.static_path -> ~p"..."
-  * live_redirect -> <.link href={~p"..."}>...</.link>
-  * link "text", to: "..." -> <.link href={~p"...}"}>
+  * ```nimble_strftime``` -> ```Calendar``` in elixir
+  * ```Routes.static_path``` -> ```~p"..."```
+  * ```live_redirect``` -> ```<.link href={~p"..."}>...</.link>```
+  * ```link "text", to: "..."``` -> ```<.link href={~p"...}"}>```
