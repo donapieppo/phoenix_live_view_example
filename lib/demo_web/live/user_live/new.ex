@@ -6,7 +6,7 @@ defmodule DemoWeb.UserLive.New do
 
   def mount(_params, _session, socket) do
     changeset = Accounts.change_user(%User{})
-    {:ok, assign(socket, changeset: changeset)}
+    {:ok, assign(socket, form: to_form(changeset))}
   end
 
   def handle_event("validate", %{"user" => user_params}, socket) do
@@ -15,7 +15,7 @@ defmodule DemoWeb.UserLive.New do
       |> Demo.Accounts.change_user(user_params)
       |> Map.put(:action, :insert)
 
-    {:noreply, assign(socket, changeset: changeset)}
+    {:noreply, assign(socket, form: to_form(changeset))}
   end
 
   def handle_event("save", %{"user" => user_params}, socket) do
@@ -27,7 +27,7 @@ defmodule DemoWeb.UserLive.New do
          |> push_redirect(to: ~p"/users/#{user.id}")}
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        {:noreply, assign(socket, changeset: changeset)}
+        {:noreply, assign(socket, form: to_form(changeset))}
     end
   end
 end
