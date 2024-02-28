@@ -3,18 +3,13 @@ defmodule DemoWeb.UserLive.IndexManualScroll do
 
   def render(assigns) do
     ~H"""
-    <table>
-      <tbody phx-update="stream" id="users">
-        <%= for {dom_id, user} <- @streams.users do %>
-          <tr class="user-row" id={dom_id}>
-            <td><%= user.username %></td>
-            <td><%= user.email %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <.table id="users" rows={@streams.users}>
+      <:col :let={{_id, user}} label="Username"><%= user.username %></:col>
+      <:col :let={{_id, user}} label="Email"><%= user.email %></:col>
+    </.table>
+
     <form phx-submit="load-more">
-      <button phx-disable-with="loading...">more</button>
+      <.button phx-disable-with="loading...">more</.button>
     </form>
     """
   end
@@ -27,7 +22,7 @@ defmodule DemoWeb.UserLive.IndexManualScroll do
   end
 
   defp fetch(%{assigns: %{page: page, per_page: per}} = socket) do
-    socket 
+    socket
     |> stream(:users, Demo.Accounts.list_users(page, per))
   end
 
