@@ -1,33 +1,32 @@
 defmodule DemoWeb.PageLive do
   use DemoWeb, :live_view
 
+  import DemoWeb.DemoComponents 
+
   def render(assigns) do
     ~H"""
-    <section class="phx-hero">
-      <h2><%= gettext("Welcome to %{name}!", name: "Phoenix LiveView") %></h2>
-      <%= live_render(@socket, DemoWeb.WeatherLive, id: :weather) %>
-    </section>
+    <.header class="my-4">
+      <%= gettext("Welcome to %{name}!", name: "Phoenix LiveView") %>
+      <:subtitle>Here you can find some LiveView Examples</:subtitle>
+    </.header>
 
-    <section class="row">
-      <article class="column">
-        <h4>LiveView Examples</h4>
-        <ul>
-          <li><.link href={~p"/thermostat"}>Thermostat</.link></li>
-          <li><.link href={~p"/snake"}>Snake</.link></li>
-          <li><.link href={~p"/search"}>Search with autocomplete</.link></li>
-          <li><.link href={~p"/users"}>CRUD users with live pagination</.link></li>
-          <li><.link href={~p"/users-scroll"}>Manual infinite scroll with button</.link></li>
-          <li><.link href={~p"/users-auto-scroll"}>Automatic infinite scroll with JS hook</.link></li>
-          <li><.link href={~p"/image"}>Image Editor</.link></li>
-          <li><.link href={~p"/clock"}>Clock</.link></li>
-          <li><.link href={~p"/pacman"}>Pacman</.link></li>
-          <li><.link href={~p"/rainbow"}>Rainbow</.link></li>
-          <li><.link href={~p"/top"}>Top</.link></li>
-          <li><.link href={~p"/presence_users/pippo"}>Presence Example</.link></li>
-          <li><.link href={~p"/dev/dashboard"}>Live Dashboard</.link></li>
-        </ul>
-      </article>
-    </section>
+    <%= live_render(@socket, DemoWeb.WeatherLive, id: :weather) %>
+
+    <ul id="example-list" class="my-2">
+      <.example href={~p"/thermostat"} title="Thermostat" description=""/>
+      <.example href={~p"/snake"} title="Snake" description=""/>
+      <.example href={~p"/search"} title="Search with autocomplete" description="Searches word in /usr/share/dict/words and shows dict command result on submit"/>
+      <.example href={~p"/users"} title="CRUD users with live pagination" description="Pagination example. Change page with arrows or click."/>
+      <.example href={~p"/users-scroll"} title="Manual infinite scroll with button" description=""/>
+      <.example href={~p"/users-auto-scroll"} title="Automatic infinite scroll with JS hook" description=""/>
+      <.example href={~p"/image"} title="Image Editor" description=""/>
+      <.example href={~p"/clock"} title="Clock" description=""/>
+      <.example href={~p"/pacman"} title="Pacman" description=""/>
+      <.example href={~p"/rainbow"} title="Rainbow" description=""/>
+      <.example href={~p"/top"} title="Top" description=""/>
+      <.example href={~p"/presence_users/pippo"} title="Presence Example" description=""/>
+      <.example href={~p"/dev/dashboard"} title="Live Dashboard" description=""/>
+    </ul>
     """
   end
 end
