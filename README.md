@@ -20,13 +20,13 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 
 ## Main changes for phoenix 1.7.11
 
-  * `nimble_strftime` -> `Calendar` in elixir
   * `Routes.static_path` -> `~p"..."`
   * `live_redirect` -> `<.link href={~p"..."}>...</.link>`
   * `link "text", to: "..."` -> `<.link href={~p"...}"}>`
-  * streams (`phx-update="append"` is deprecated, please use streams instead)
+  * streams (`phx-update="append"` is deprecated)
   * `lib/demo_web/templates/layout` is now `lib/demo_web/components/layouts`
-  * `simple_form` component for editing user
+  * use of `.simple_form` and `.table` components
   * use of Tailwind css with `@apply` directive
+  * `NimbleStrftime` -> `Calendar` (merged in elixir)
   *
   * a lot of changes from runnig `mix phx.new demo` :-)
