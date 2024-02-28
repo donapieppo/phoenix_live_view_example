@@ -22,7 +22,7 @@ defmodule DemoWeb.UserLive.Edit do
       |> Demo.Accounts.change_user(params)
       |> Map.put(:action, :update)
 
-    {:noreply, assign(socket, changeset: changeset)}
+    {:noreply, assign(socket, :form, to_form(changeset))}
   end
 
   def handle_event("save", %{"user" => user_params}, socket) do
@@ -34,7 +34,7 @@ defmodule DemoWeb.UserLive.Edit do
          |> push_redirect(to: ~p"/users/#{user.id}")}
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        {:noreply, assign(socket, changeset: changeset)}
+        {:noreply, assign(socket, :form, to_form(changeset))}
     end
   end
 end
