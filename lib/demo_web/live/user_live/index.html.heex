@@ -1,4 +1,4 @@
-<h2>Listing Users, page <%= @page %></h2>
+<.header>Listing Users <:subtitle>page <%= @page %></:subtitle></.header>
 
 <div phx-window-keydown="keydown" phx-throttle="500">
   <.table id="users_table" rows={@streams.users}>
@@ -27,6 +27,6 @@
       <li><.link patch={~p"/users?page=#{@page + 1}"}>next</.link></li>
     </ul>
     <br />
-    <span><.link href={~p"/users/new"}>New User</.link></span>
+    <span><.link href={~p"/users/new"}><.button>New User</.button></.link></span>
   </nav>
 </div>
