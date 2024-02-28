@@ -50,11 +50,11 @@ defmodule DemoWeb.UserLive.IndexAutoScroll do
     ~H"""
     <table>
       <tbody id="users"
-             phx-update="append"
+             phx-update="stream"
              phx-hook="InfiniteScroll"
              data-page={@page}>
-        <%= for user <- @users do %>
-          <.live_component module={Row} id={"user-#{user.id}"} user={user} />
+        <%= for {dom_id, user} <- @streams.users do %>
+          <.live_component module={Row} id={dom_id} user={user} />
         <% end %>
       </tbody>
     </table>
@@ -65,11 +65,12 @@ defmodule DemoWeb.UserLive.IndexAutoScroll do
     {:ok,
      socket
      |> assign(page: 1, per_page: 10)
-     |> fetch(), temporary_assigns: [users: []]}
+     |> fetch()}
   end
 
   defp fetch(%{assigns: %{page: page, per_page: per}} = socket) do
-    assign(socket, users: Demo.Accounts.list_users(page, per))
+    socket 
+    |> stream(:users, Demo.Accounts.list_users(page, per))
   end
 
   def handle_event("load-more", _, %{assigns: assigns} = socket) do
