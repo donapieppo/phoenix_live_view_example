@@ -4,7 +4,6 @@
 
 /* This file is for your main application CSS */
 
-@import "page";
 @import "pacman";
 @import "snake";
 @import "thermostat";
