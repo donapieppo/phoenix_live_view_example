@@ -24,7 +24,7 @@ defmodule DemoWeb.UserLive.New do
         {:noreply,
          socket
          |> put_flash(:info, "user created")
-         |> push_redirect(to: Routes.user_show_path(socket, :show, user))}
+         |> push_redirect(to: ~p"/users/#{user.id}")}
 
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply, assign(socket, changeset: changeset)}
