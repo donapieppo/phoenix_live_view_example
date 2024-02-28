@@ -6,13 +6,13 @@ defmodule DemoWeb.UserLive.Show do
 
   def render(assigns) do
     ~H"""
-    <h2>Show User</h2>
-    <ul>
+    <.header>Show User</.header>
+    <ul class="my-4">
       <li><b>Username:</b> <%= @user.username %></li>
       <li><b>Email:</b> <%= @user.email %></li>
       <li><b>Phone:</b> <%= @user.phone_number %></li>
     </ul>
-    <span><.link href={~p"/users/#{@user.id}/edit"}>Edit</.link></span>
+    <.link href={~p"/users/#{@user.id}/edit"}><.button>Edit</.button></.link>
     <span><.back navigate={~p"/users"}>Back</.back></span>
     """
   end
