@@ -7,10 +7,8 @@ defmodule DemoWeb.PageLive do
     ~H"""
     <.header class="my-4">
       <%= gettext("Welcome to %{name}!", name: "Phoenix LiveView") %>
-      <:subtitle>Here you can find some LiveView Examples</:subtitle>
+      <:subtitle>Here you can find some LiveView examples.</:subtitle>
     </.header>
-
-    <%= live_render(@socket, DemoWeb.WeatherLive, id: :weather) %>
 
     <ul id="example-list" class="my-2">
       <.example href={~p"/thermostat"} title="Thermostat" description="The simplest example."/>
@@ -25,8 +23,12 @@ defmodule DemoWeb.PageLive do
       <.example href={~p"/rainbow"} title="Rainbow" description=""/>
       <.example href={~p"/top"} title="Top" description=""/>
       <.example href={~p"/presence_users/pippo"} title="Presence Example" description=""/>
-      <.example href={~p"/dev/dashboard"} title="Live Dashboard" description=""/>
+      <.example href={~p"/dev/dashboard"} title="Live Dashboard" description="Default Phoenix Dashboard"/>
     </ul>
+
+    <div class="rounded-xl bg-green-100 p-4 my-4">
+    <%= live_render(@socket, DemoWeb.WeatherLive, id: :weather) %>
+    </div>
     """
   end
 end
