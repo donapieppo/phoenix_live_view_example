@@ -3,14 +3,18 @@ defmodule DemoWeb.SearchLive do
 
   def render(assigns) do
     ~H"""
-    <form phx-change="suggest" phx-submit="search">
+    <.header>
+      Search with autocomplete
+      <:subtitle>Autocomplete from <i>/usr/share/dict/words</i> and on submit shows dict</:subtitle>
+    </.header>
+    <form phx-change="suggest" phx-submit="search" class="my-4">
       <input type="text" name="q" value={@query} list="matches" placeholder="Search..." {%{readonly: @loading}}/>
       <datalist id="matches">
         <%= for match <- @matches do %>
           <option value={match}><%= match %></option>
         <% end %>
       </datalist>
-      <%= if @result do %><pre><%= @result %></pre><% end %>
+      <%= if @result do %><pre class="text-sm my-2 p-4 bg-gray-50 rounded"><%= @result %></pre><% end %>
     </form>
     """
   end
