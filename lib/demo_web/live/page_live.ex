@@ -13,7 +13,7 @@ defmodule DemoWeb.PageLive do
     <%= live_render(@socket, DemoWeb.WeatherLive, id: :weather) %>
 
     <ul id="example-list" class="my-2">
-      <.example href={~p"/thermostat"} title="Thermostat" description=""/>
+      <.example href={~p"/thermostat"} title="Thermostat" description="The simplest example."/>
       <.example href={~p"/snake"} title="Snake" description=""/>
       <.example href={~p"/search"} title="Search with autocomplete" description="Searches word in /usr/share/dict/words and shows dict command result on submit"/>
       <.example href={~p"/users"} title="CRUD users with live pagination" description="Pagination example. Change page with arrows or click."/>
