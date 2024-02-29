@@ -1,38 +1,39 @@
-<h2>Listing Users, page <%= @page %></h2>
+<.header>
+  Listing Users
+  <:subtitle>page <%= @page %></:subtitle>
+</.header>
 
-<table>
-  <thead>
-    <tr>
-      <th>Username</th>
-      <th>Email</th>
-      <th>Phone #</th>
+<.table id="users_table" rows={@users}>
+  <:col :let={user} label="Username"><%= user.username %></:col>
+  <:col :let={user} label="Email"><%= user.email %></:col>
+  <:col :let={user} label="Phone Number"><%= user.phone_number %></:col>
+  <:action :let={user}>
+    <.link patch={~p"/users/#{user.id}"}>Show</.link>
+    <.link patch={~p"/users/#{user.id}/edit"}>Edit</.link>
+    <.link phx-click="delete_user" data-confirm="Are you sure?" phx-value-id={user.id}>
+      Delete
+    </.link>
+  </:action>
+</.table>
 
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <%= for user <- @users do %>
-      <tr>
-        <td><%= user.username %></td>
-        <td><%= user.email %></td>
-        <td><%= user.phone_number %></td>
-
-        <td>
-          <.link href={~p"/users/#{user.id}"}>Show</.link>
-          <.link href={~p"/users/#{user.id}/edit"}>Edit</.link>
-          <.link phx-click="delete_user" phx-value-id={user.id}>Delete</.link>
-        </td>
-      </tr>
+<nav class="text-center" aria-label="Pagination">
+  <ul class="list-style-none flex">
+    <%= if @page > 1 do %>
+      <li><.link patch={~p"/users?page=#{@page - 1}"}>prev</.link></li>
     <% end %>
-  </tbody>
-</table>
-
-<%= if @page > 1 do %>
-  <span><.link patch={~p"/users?page=#{@page - 1}"}>prev</.link></span>
-<% end %>
-<%= for i <- (@page - 5)..(@page + 5), i > 0 do %>
-  <span><.link patch={~p"/users?page=#{i}"}><%= i %></.link></span>
-<% end %>
-<span><.link patch={~p"/users?page=#{@page + 1}"}>next</.link></span>
-<br />
-<span><.link href={~p"/users/new"}>New User (live)</.link></span>
+    <%= for i <- (@page - 5)..(@page + 5), i > 0 do %>
+      <li>
+        <.link patch={~p"/users?page=#{i}"} class="pagination">
+          <%= i %>
+        </.link>
+      </li>
+    <% end %>
+    <li><.link patch={~p"/users?page=#{@page + 1}"}>next</.link></li>
+  </ul>
+  <br />
+  <span>
+    <.link href={~p"/users/new"}>
+      <.button>New User</.button>
+    </.link>
+  </span>
+</nav>
