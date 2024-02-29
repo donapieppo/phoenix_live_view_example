@@ -3,6 +3,8 @@ defmodule DemoWeb.UserLive.IndexManualScroll do
 
   def render(assigns) do
     ~H"""
+    <.header>Manual infinite scroll with button<:subtitle>page <%= @page %></:subtitle></.header>
+
     <.table id="users" rows={@streams.users}>
       <:col :let={{_id, user}} label="Username"><%= user.username %></:col>
       <:col :let={{_id, user}} label="Email"><%= user.email %></:col>
@@ -17,7 +19,7 @@ defmodule DemoWeb.UserLive.IndexManualScroll do
   def mount(_params, _session, socket) do
     {:ok,
      socket
-     |> assign(page: 1, per_page: 10, val: 0)
+     |> assign(page: 1, per_page: 5, val: 0)
      |> fetch()}
   end
 
