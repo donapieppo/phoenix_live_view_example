@@ -3,11 +3,13 @@ defmodule DemoWeb.UserLive.Index do
 
   alias Demo.Accounts
 
+  @impl true
   def mount(_params, _session, socket) do
     if connected?(socket), do: Accounts.subscribe()
-    {:ok, assign(socket, page: 1, per_page: 5)}
+    {:ok, socket |> assign(page: 1, per_page: 5)}
   end
 
+  @impl true
   def handle_params(params, _url, socket) do
     {page, ""} = Integer.parse(params["page"] || "1")
     {:noreply, socket |> assign(page: page) |> fetch()}
@@ -20,20 +22,19 @@ defmodule DemoWeb.UserLive.Index do
     |> assign(page_title: "Listing Users – Page #{page}")
   end
 
+  @impl true
   def handle_info({Accounts, [:user | _], _}, socket) do
     {:noreply, fetch(socket)}
   end
 
+  @impl true
   def handle_event("keydown", %{"key" => "ArrowLeft"}, socket) do
     {:noreply, go_page(socket, socket.assigns.page - 1)}
   end
-
   def handle_event("keydown", %{"key" => "ArrowRight"}, socket) do
     {:noreply, go_page(socket, socket.assigns.page + 1)}
   end
-
   def handle_event("keydown", _, socket), do: {:noreply, socket}
-
   def handle_event("delete_user", %{"id" => id}, socket) do
     user = Accounts.get_user!(id)
     {:ok, _user} = Accounts.delete_user(user)
