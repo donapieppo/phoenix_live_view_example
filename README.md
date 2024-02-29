@@ -25,7 +25,7 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
   * `link "text", to: "..."` -> `<.link href={~p"...}"}>`
   * streams (`phx-update="append"` is deprecated)
   * `lib/demo_web/templates/layout` is now `lib/demo_web/components/layouts`
-  * use of `.simple_form` and `.table` components
+  * use of `.simple_form` and `.table from CoreComponents
   * use of Tailwind css with `@apply` directive
   * `NimbleStrftime` -> `Calendar` (merged in elixir)
   *
