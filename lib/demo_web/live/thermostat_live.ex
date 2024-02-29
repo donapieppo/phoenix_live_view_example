@@ -3,6 +3,11 @@ defmodule DemoWeb.ThermostatLive do
 
   def render(assigns) do
     ~H"""
+    <.header>
+      Thermostat Example
+      <:subtitle>Temperatures over 75 raises <span class="text-red-700">Boom</span></:subtitle>
+    </.header>
+
     <div class="thermostat">
       <div class={"bar #{@mode}"}>
         <a href="#" phx-click="toggle-mode"><%= @mode %></a>
