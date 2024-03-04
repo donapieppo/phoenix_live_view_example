@@ -6,18 +6,15 @@ import Config
 # to provide built-in test partitioning in CI environment.
 # Run `mix help test` for more information.
 config :demo, Demo.Repo,
-  username: "postgres",
-  password: "postgres",
-  hostname: "localhost",
-  database: "demo_test#{System.get_env("MIX_TEST_PARTITION")}",
-  pool: Ecto.Adapters.SQL.Sandbox,
-  pool_size: System.schedulers_online() * 2
+  database: Path.expand("../demo_test.db", Path.dirname(__ENV__.file)),
+  pool_size: 5,
+  pool: Ecto.Adapters.SQL.Sandbox
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
 config :demo, DemoWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
-  secret_key_base: "E0VZnQizJJk8aE8tdb6ofd056a4F4Mtw/56x2UA9D9uvzZUBABJ4xYhx9Kw8eVci",
+  secret_key_base: "DYPpAm1voE20cOYUg3w35LQ6C0EJ+lg0A62uk26EWZV+qc7pr4FkEb9t8PFsatDG",
   server: false
 
 # In test we don't send emails.

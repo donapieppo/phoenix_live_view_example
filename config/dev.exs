@@ -2,13 +2,10 @@ import Config
 
 # Configure your database
 config :demo, Demo.Repo,
-  username: "postgres",
-  password: "change_me",
-  database: "demo",
-  hostname: "localhost",
+  database: Path.expand("../demo_dev.db", Path.dirname(__ENV__.file)),
+  pool_size: 5,
   stacktrace: true,
-  show_sensitive_data_on_connection_error: true,
-  pool_size: 10
+  show_sensitive_data_on_connection_error: true
 
 # For development, we disable any cache and enable
 # debugging and code reloading.
@@ -23,7 +20,7 @@ config :demo, DemoWeb.Endpoint,
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "KTAHQBhs7hmUdcBj1YfyK1vUcsvBuPsGCmPKoSpH74KxjIKKt55u2GVHADXvHfDb",
+  secret_key_base: "pVySPkbhdu79To2zxDbpuor2AyZOaqksSs/P/7/F3vcdrRPhzMr70otq27rW9utA",
   watchers: [
     esbuild: {Esbuild, :install_and_run, [:demo, ~w(--sourcemap=inline --watch)]},
     tailwind: {Tailwind, :install_and_run, [:demo, ~w(--watch)]}
