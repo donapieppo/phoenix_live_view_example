@@ -2,6 +2,7 @@
 
 To start your Phoenix server:
 
+  * Install dependencies with `mix deps.get`
   * Run `mix setup` to install and setup dependencies. It also runs migration to create users.
   * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
 
@@ -29,3 +30,5 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
   * `NimbleStrftime` -> `Calendar` (merged in elixir)
   *
   * a lot of changes from runnig `mix phx.new demo` :-)
+
+I also moved to sqlite3 as it is just examples.
