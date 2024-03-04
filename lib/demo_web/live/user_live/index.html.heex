@@ -12,19 +12,19 @@
     </:action>
   </.table>
 
-  <nav class="text-center" aria-label="Pagination">
-    <ul class="list-style-none flex">
+  <nav class="w-full text-center" aria-label="Pagination" id="pagination">
+    <ul class="list-style-none flex items-center justify-center">
       <%= if @page > 1 do %>
-        <li><.link patch={~p"/users?page=#{@page - 1}"}>prev</.link></li>
+        <li class="mr-2"><.link patch={~p"/users?page=#{@page - 1}"}>prev</.link></li>
       <% end %>
       <%= for i <- (@page - 5)..(@page + 5), i > 0 do %>
-        <li>
-          <.link patch={~p"/users?page=#{i}"} class="pagination">
+        <li class="number">
+          <.link patch={~p"/users?page=#{i}"}>
             <%= i %>
           </.link>
         </li>
       <% end %>
-      <li><.link patch={~p"/users?page=#{@page + 1}"}>next</.link></li>
+      <li class="ml-2"><.link patch={~p"/users?page=#{@page + 1}"}>next</.link></li>
     </ul>
     <br />
     <span><.link href={~p"/users/new"}><.button>New User</.button></.link></span>
