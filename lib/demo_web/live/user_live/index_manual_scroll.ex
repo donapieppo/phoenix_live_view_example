@@ -3,14 +3,16 @@ defmodule DemoWeb.UserLive.IndexManualScroll do
 
   def render(assigns) do
     ~H"""
-    <.header>Manual infinite scroll with button<:subtitle>page <%= @page %></:subtitle></.header>
+    <.header>
+      Manual infinite scroll with button<:subtitle>page <%= @page %></:subtitle>
+    </.header>
 
     <.table id="users" rows={@streams.users}>
       <:col :let={{_id, user}} label="Username"><%= user.username %></:col>
       <:col :let={{_id, user}} label="Email"><%= user.email %></:col>
     </.table>
 
-    <form phx-submit="load-more">
+    <form class="my-4" phx-submit="load-more">
       <.button phx-disable-with="loading...">more</.button>
     </form>
     """
@@ -29,6 +31,9 @@ defmodule DemoWeb.UserLive.IndexManualScroll do
   end
 
   def handle_event("load-more", _, %{assigns: assigns} = socket) do
-    {:noreply, socket |> assign(page: assigns.page + 1) |> fetch()}
+    {:noreply,
+     socket
+     |> assign(page: assigns.page + 1)
+     |> fetch()}
   end
 end
