@@ -5,7 +5,7 @@ defmodule DemoWeb.ThermostatLive do
     ~H"""
     <.header>
       Thermostat Example
-      <:subtitle>Temperatures over 75 raises <span class="text-red-700">Boom</span></:subtitle>
+      <:subtitle>Temperatures over 75 raise <span class="text-red-700">Boom</span></:subtitle>
     </.header>
 
     <div class="thermostat">
