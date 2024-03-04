@@ -6,7 +6,7 @@ defmodule DemoWeb.UserLive.Index do
   @impl true
   def mount(_params, _session, socket) do
     if connected?(socket), do: Accounts.subscribe()
-    {:ok, socket |> assign(page: 1, per_page: 5)}
+    {:ok, socket |> assign(page: 1, per_page: 10)}
   end
 
   @impl true
