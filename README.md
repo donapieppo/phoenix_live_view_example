@@ -10,6 +10,17 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
 
+## Where to start
+
+Start reading the code from `config/demo_web/router.ex`.
+
+The line
+```elixir
+  live "/", PageLive, :index
+```
+defines a LiveView route (see [https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.Router.html])
+to the code in `lib/demo_web/live/page_live.ex`.
+
 ## Learn more
 
   * Official website: https://www.phoenixframework.org/
