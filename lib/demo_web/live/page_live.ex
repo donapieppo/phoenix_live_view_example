@@ -12,8 +12,8 @@ defmodule DemoWeb.PageLive do
 
     <ul id="example-list" class="my-2">
       <.example href={~p"/thermostat"} title="Thermostat" description="The simplest example."/>
-      <.example href={~p"/snake"} title="Snake" description=""/>
-      <.example href={~p"/search"} title="Search with autocomplete" description="Searches word in /usr/share/dict/words and shows dict command result on submit"/>
+      <.example href={~p"/snake"} title="Snake" description="The classic game."/>
+      <.example href={~p"/search"} title="Search with autocomplete" description="Searches word in /usr/share/dict/words and shows dict command result on submit."/>
       <.example href={~p"/users"} title="CRUD users with live pagination" description="Pagination example. Change page with arrows or click."/>
       <.example href={~p"/users-scroll"} title="Manual infinite scroll with button" description=""/>
       <.example href={~p"/users-auto-scroll"} title="Automatic infinite scroll with JS hook" description=""/>
