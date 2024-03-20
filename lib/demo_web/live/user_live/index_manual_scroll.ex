@@ -12,6 +12,16 @@ defmodule DemoWeb.UserLive.IndexManualScroll do
       <:col :let={{_id, user}} label="Email"><%= user.email %></:col>
     </.table>
 
+    <div id="user_emails2" phx-update="stream">
+      <div
+        :for={{id, user} <- @streams.users}
+        class="inline mx-1 border-2 rounded-xl px-2 bg-blue-600 text-sm text-gray-50"
+        id={"#{id}-email"}
+      >
+        <%= user.email %>
+      </div>
+    </div>
+
     <form class="my-4" phx-submit="load-more">
       <.button phx-disable-with="loading...">more</.button>
     </form>
