@@ -3,25 +3,29 @@ defmodule DemoWeb.ImageLive do
 
   def radio_tag(assigns) do
     ~H"""
-    <input type="radio" name={@name} value={@value} checked={@value == @checked}/>
+    <input type="radio" id={@value} name={@name} value={@value} checked={@value == @checked} />
+    <label for={@value}><%= @label %></label>
     """
   end
 
   def render(assigns) do
     ~H"""
     <div style={"margin-left: #{@depth * 50}px;"}>
-      <form phx-change="update">
-        <input type="range" min="10" max="630" name="width" value={@width} />
+      <form phx-change="update" class="bg-gray-100 roundex-2xl p-2">
+        <legend>Choose the <b>size</b> of the phoenix logo</legend>
+        <input type="range" min="10" max="630" name="width" value={@width} class="my-2"/>
         <%= @width %>px
         <fieldset>
-          White <.radio_tag name={:bg} value="white" checked={@bg}/>
-          Black <.radio_tag name={:bg} value="black" checked={@bg}/>
-          Blue <.radio_tag name={:bg} value="blue" checked={@bg}/>
+          <legend class="my-2">and the bg <b>color</b></legend>
+          <.radio_tag name={:bg} label="White" value="white" checked={@bg} /><br />
+          <.radio_tag name={:bg} label="Black" value="black" checked={@bg} /><br />
+          <.radio_tag name={:bg} label="Blue" value="blue" checked={@bg} />
         </fieldset>
       </form>
-      <br/>
-      <img src={~p"/images/logo.svg"} phx-click="boom"
-        width={@width} style={"background: #{@bg};"}/>
+      <div class="text-sm text-gray-700">Click on the image to raise an exception (boom)</div>
+      <div class="my-4">
+        <img src={~p"/images/logo.svg"} phx-click="boom" width={@width} style={"background: #{@bg};"} />
+      </div>
     </div>
     """
   end
