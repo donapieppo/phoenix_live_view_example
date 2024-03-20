@@ -22,7 +22,7 @@ defmodule DemoWeb.UserLive.Show do
   end
 
   def handle_params(%{"id" => id}, _url, socket) do
-    if connected?(socket), do: Demo.Accounts.subscribe(id)
+    if connected?(socket), do: Accounts.subscribe(id)
     {:noreply, socket |> assign(id: id) |> fetch()}
   end
 
