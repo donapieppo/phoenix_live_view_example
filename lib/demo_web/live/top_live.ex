@@ -3,7 +3,7 @@ defmodule DemoWeb.TopLive do
 
   def render(assigns) do
     ~H"""
-    <pre>
+    <pre class="bg-gray-100 p-2 rounded-xl mx-2">
       <%= @top %>
     </pre>
     """
