@@ -13,7 +13,7 @@ defmodule DemoWeb.ImageLive do
     <div style={"margin-left: #{@depth * 50}px;"}>
       <form phx-change="update" class="bg-gray-100 roundex-2xl p-2">
         <legend>Choose the <b>size</b> of the phoenix logo</legend>
-        <input type="range" min="10" max="630" name="width" value={@width} class="my-2"/>
+        <input type="range" min="10" max="630" name="width" value={@width} class="my-2" />
         <%= @width %>px
         <fieldset>
           <legend class="my-2">and the bg <b>color</b></legend>
@@ -24,7 +24,13 @@ defmodule DemoWeb.ImageLive do
       </form>
       <div class="text-sm text-gray-700">Click on the image to raise an exception (boom)</div>
       <div class="my-4">
-        <img src={~p"/images/logo.svg"} phx-click="boom" width={@width} style={"background: #{@bg};"} />
+        <img
+          src={~p"/images/logo.svg"}
+          phx-click="boom"
+          width={@width}
+          style={"background: #{@bg};"}
+          alt="Click me if you dare."
+        />
       </div>
     </div>
     """
