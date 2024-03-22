@@ -17,7 +17,7 @@ defmodule DemoWeb.PageLive do
       <.example href={~p"/search"} title="Search with autocomplete" description="Searches word in /usr/share/dict/words and shows dict command result on submit."/>
       <.example href={~p"/image"} title="Image Editor" description="Modify an image using a form with phx-change."/>
       <.example href={~p"/clock"} title="Clock" description=""/>
-      <.example href={~p"/rainbow"} title="Rainbow" description=""/>
+      <.example href={~p"/rainbow"} title="Rainbow" description="Animation powered by Phoenix with full re-render on every frame."/>
       <.example href={~p"/top"} title="Top" description="System top command updated every second."/>
       <.example href={~p"/users"} title="CRUD users with live pagination" description="Pagination example. Change page with arrows or click."/>
       <.example href={~p"/users-scroll"} title="Users with manual infinite scroll with button" description="List of users with `load more` button."/>
