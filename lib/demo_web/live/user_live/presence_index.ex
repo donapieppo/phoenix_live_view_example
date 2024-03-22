@@ -2,6 +2,7 @@ defmodule DemoWeb.UserLive.PresenceIndex do
   use DemoWeb, :live_view
 
   alias Demo.Accounts
+  # https://hexdocs.pm/phoenix/Phoenix.Presence.html
   alias DemoWeb.Presence
   alias Phoenix.Socket.Broadcast
 
