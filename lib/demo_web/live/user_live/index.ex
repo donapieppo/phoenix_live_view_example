@@ -6,7 +6,7 @@ defmodule DemoWeb.UserLive.Index do
   @impl true
   def mount(_params, _session, socket) do
     if connected?(socket), do: Accounts.subscribe()
-    {:ok, socket |> assign(page: 1, per_page: 10)}
+    {:ok, socket |> assign(page: 1, per_page: 10, selected_user: false)}
   end
 
   @impl true
@@ -28,13 +28,34 @@ defmodule DemoWeb.UserLive.Index do
   end
 
   @impl true
-  def handle_event("keydown", %{"key" => "ArrowLeft"}, socket) do
-    {:noreply, go_page(socket, socket.assigns.page - 1)}
+  def handle_event("hide_user", _, socket) do
+    {:noreply, socket |> assign(:selected_user, false)}
   end
-  def handle_event("keydown", %{"key" => "ArrowRight"}, socket) do
-    {:noreply, go_page(socket, socket.assigns.page + 1)}
+
+  @impl true
+  def handle_event("keydown", %{"key" => key}, socket) do
+    new_page = case key do
+      "ArrowRight" ->
+        socket.assigns.page + 1
+      "ArrowLeft" -> 
+        socket.assigns.page - 1
+      "Home" ->
+        1
+      _ ->
+        false 
+    end
+    if new_page do
+      {:noreply, go_page(socket, new_page)}
+    else
+      {:noreply, socket |> assign(:selected_user, false)}
+    end
   end
-  def handle_event("keydown", _, socket), do: {:noreply, socket}
+
+  @impl true
+  def handle_event("show_user", %{"id" => id}, socket) do
+    {:noreply, socket |> assign(:selected_user, Accounts.get_user!(id))}
+  end
+
   def handle_event("delete_user", %{"id" => id}, socket) do
     user = Accounts.get_user!(id)
     {:ok, _user} = Accounts.delete_user(user)

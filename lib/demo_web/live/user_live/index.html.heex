@@ -1,14 +1,38 @@
-<.header>Listing Users <:subtitle>page <%= @page %></:subtitle></.header>
+<.header>
+  Listing Users
+  <:subtitle>page <%= @page %></:subtitle>
+  <:actions>
+    <.link patch={~p"/users/new"}>
+      <.button>New User</.button>
+    </.link>
+  </:actions>
+</.header>
 
 <div phx-window-keydown="keydown" phx-throttle="500">
-  <.table id="users_table" rows={@streams.users}>
+  <.table
+    id="users_table"
+    rows={@streams.users}
+    row_click={fn {_id, user} -> JS.navigate(~p"/users/#{user}") end}
+  >
     <:col :let={{_id, user}} label="Username"><%= user.username %></:col>
     <:col :let={{_id, user}} label="Email"><%= user.email %></:col>
     <:col :let={{_id, user}} label="Phone Number"><%= user.phone_number %></:col>
     <:action :let={{_id, user}}>
-      <.link patch={~p"/users/#{user.id}"}>Show</.link>
-      <.link patch={~p"/users/#{user.id}/edit"}>Edit</.link>
-      <.link phx-click="delete_user" data-confirm="Are you sure?" phx-value-id={user.id}>Delete</.link>
+      <div class="sr-only">
+        <.link patch={~p"/users/#{user}"}>Show</.link>
+      </div>
+      <.link phx-click="show_user" phx-value-id={user.id}>Modal show</.link>
+    </:action>
+    <:action :let={{_id, user}}>
+      <.link patch={~p"/users/#{user}/edit"}>Edit</.link>
+    </:action>
+    <:action :let={{id, user}}>
+      <.link
+        phx-click={JS.push("delete_user", value: %{id: user.id}) |> hide("##{id}")}
+        data-confirm="Are you sure?"
+      >
+        Delete
+      </.link>
     </:action>
   </.table>
 
@@ -17,7 +41,7 @@
       <%= if @page > 1 do %>
         <li class="mr-2"><.link patch={~p"/users?page=#{@page - 1}"}>prev</.link></li>
       <% end %>
-      <%= for i <- (@page - 5)..(@page + 5), i > 0 do %>
+      <%= for i <- (@page - 3)..(@page + 3), i > 0 do %>
         <li class="number">
           <.link patch={~p"/users?page=#{i}"}>
             <%= i %>
@@ -26,7 +50,17 @@
       <% end %>
       <li class="ml-2"><.link patch={~p"/users?page=#{@page + 1}"}>next</.link></li>
     </ul>
-    <br />
-    <span><.link href={~p"/users/new"}><.button>New User</.button></.link></span>
   </nav>
 </div>
+
+<.modal :if={@selected_user} id="post-modal" show on_cancel={JS.push("hide_user")}>
+  <div class="flex justify-center">
+    <div class="p-4">
+      <.icon name="hero-user-circle" class="w-32 h-32" />
+    </div>
+    <div class="flex-grow">
+      <h2 class="text-xl my-4">User <%= @selected_user.username %></h2>
+      email: <%= @selected_user.email %>
+    </div>
+  </div>
+</.modal>
