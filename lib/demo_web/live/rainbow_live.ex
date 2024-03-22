@@ -9,20 +9,24 @@ defmodule DemoWeb.RainbowLive do
     <h1>Silky Smooth SSR</h1>
     <h3>Fast enough to power animations <em>[on the server]</em> at <%= @fps %>FPS</h3>
     <form phx-change="update_fps">
-      <input type="range" min="1" max="100" value={@fps} name="fps"/>
+      <input type="range" min="1" max="100" value={@fps} name="fps" />
     </form>
     <div class="animated-sin-wave" phx-click="switch" style={"background: #{@bg};"}>
       <%= for bar <- @bars do %>
-        <div class="bar" id={bar.id} style={"width: #{bar.width}%; left: #{bar.x}%; transform: scale(0.8,.5) translateY(#{bar.translate_y}%) rotate(#{bar.rotation}deg); background-color: hsl(#{bar.hue},95%,55%);"}>
+        <div
+          class="bar"
+          id={bar.id}
+          style={"width: #{bar.width}%; left: #{bar.x}%; transform: scale(0.8,.5) translateY(#{bar.translate_y}%) rotate(#{bar.rotation}deg); background-color: hsl(#{bar.hue},95%,55%);"}
+        >
         </div>
       <% end %>
     </div>
-    <br/>
+    <br />
     <h3>
-      The above animation is <%= @bar_count %> <%= "<div>" %> tags.
-      <br/>
+      The above animation is <%= @bar_count %> <%= "<div>" %> tags. <br />
       No SVG, no CSS transitions/animations.
-      It's all powered by <em>Phoenix</em> which does a full re-render every frame.
+      It's all powered by <em>Phoenix</em>
+      which does a full re-render every frame.
     </h3>
     """
   end
